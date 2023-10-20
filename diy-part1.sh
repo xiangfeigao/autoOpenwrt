@@ -19,5 +19,6 @@
 
 # theme argon
 # rm -rf  package/lean/luci-theme-argon 
- git clone  https://githubfast.com/jerrykuku/luci-theme-argon  package/lean/luci-theme-argon
- git clone https://githubfast.com/vernesong/OpenClash package/OpenClash
+ git clone  https://github.com/jerrykuku/luci-theme-argon  package/lean/luci-theme-argon
+ git clone https://github.com/vernesong/OpenClash package/OpenClash
+ gti clone https://github.com/fatedier/frp package/frp
