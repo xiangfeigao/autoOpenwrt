@@ -20,3 +20,4 @@
 # theme argon
 # rm -rf  package/lean/luci-theme-argon 
  git clone  https://githubfast.com/jerrykuku/luci-theme-argon  package/lean/luci-theme-argon
+ git clone https://githubfast.com/vernesong/OpenClash package/OpenClash
