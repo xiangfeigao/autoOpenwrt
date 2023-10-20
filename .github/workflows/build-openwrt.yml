@@ -20,7 +20,7 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://githubfast.com/openwrt/openwrt
+  REPO_URL: https://githubfast.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
@@ -53,12 +53,37 @@ jobs:
         large-packages: true
         swap-storage: true
 
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
+        sudo -E apt-get -qq update
+        sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-2004)
+        sudo -E apt-get -qq autoremove --purge
+        sudo -E apt-get -qq clean
+        sudo timedatectl set-timezone "$TZ"
+        sudo mkdir -p /workdir
+        sudo chown $USER:$GROUPS /workdir
+        
     - name: Clone source code
       working-directory: /workdir
       run: |
         df -hT $PWD
-        git clone $REPO_URL -b $REPO_BRANCH openwrt       
-        ln -sf openwrt $GITHUB_WORKSPACE/openwrt
+        git clone $REPO_URL -b $REPO_BRANCH openwrt
+        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        cd  openwrt
+        #插入代码到 Makefile 文件中
+        sed -i '/^# check prerequisites before starting to build$/a\
+        \
+        define Build/Prepare\
+        #下载 Node.js v0.12.18\
+        $(call Download,https://nodejs.org/dist/v0.12.18/node-v0.12.18-linux-x86.tar.gz, \
+        $(DL_DIR)/node-v0.12.18-linux-x86.tar.gz)\
+        #安装 Node.js v0.12.18\
+        mkdir -p $(STAGING_DIR)/opt\
+        tar -C $(STAGING_DIR)/opt -xzf $(DL_DIR)/node-v0.12.18-linux-x86.tar.gz\
+        endef' Makefile        
 
     - name: Load custom feeds
       run: |
@@ -95,7 +120,7 @@ jobs:
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
+        find dl -size -1024c -exec rm -f {} \;     
 
     - name: Compile the firmware
       id: compile
