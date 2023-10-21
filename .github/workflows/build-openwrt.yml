@@ -72,19 +72,7 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-        cd  openwrt
-        #插入代码到 Makefile 文件中
-        sed -i '/^# check prerequisites before starting to build$/a\
-        \
-        define Build/Prepare\
-        #下载 Node.js v0.12.18\
-        $(call Download,https://nodejs.org/dist/v0.12.18/node-v0.12.18-linux-x86.tar.gz, \
-        $(DL_DIR)/node-v0.12.18-linux-x86.tar.gz)\
-        #安装 Node.js v0.12.18\
-        mkdir -p $(STAGING_DIR)/opt\
-        tar -C $(STAGING_DIR)/opt -xzf $(DL_DIR)/node-v0.12.18-linux-x86.tar.gz\
-        endef' Makefile        
-
+        cd  openwrt    
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
