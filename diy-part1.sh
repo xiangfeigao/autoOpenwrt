@@ -21,6 +21,8 @@
 # rm -rf  package/lean/luci-theme-argon 
  git clone  https://githubfast.com/jerrykuku/luci-theme-argon  package/luci-theme-argon
  git clone  https://githubfast.com/coolsnowwolf/lede/tree/master/package/lean/adbyby   package/adbyby 
-git clone https://githubfast.com/vernesong/OpenClash package/OpenClash
-git clone https://githubfast.com/fatedier/frp package/frp
-git clone https://githubfast.com/coolsnowwolf/lede/tree/master/package/lean/wol package/wol
+# git clone https://githubfast.com/vernesong/OpenClash package/OpenClash
+git clone https://githubfast.com/openwrt/openwrt/tree/main/package   package/package
+# git clone https://githubfast.com/coolsnowwolf/lede/tree/master/package/lean/wol package/wol
+git clone  https://githubfast.com/openwrt/luci  package/luci
+ gitclone  https://githubfast.com/openwrt/routing  package/routing
