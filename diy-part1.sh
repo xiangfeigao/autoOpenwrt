@@ -14,15 +14,15 @@
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
 # Add a feed source
-echo 'src-git helloworld https://githubfast.com/fw876/helloworld' >>feeds.conf.default
-#echo 'src-git passwall https://githubfast.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
+echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
+#echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
 # theme argon
 # rm -rf  package/lean/luci-theme-argon 
-git clone  https://githubfast.com/jerrykuku/luci-theme-argon  package/luci-theme-argon
-git clone  https://githubfast.com/coolsnowwolf/lede/tree/master/package/lean/adbyby   package/adbyby 
-# git clone https://githubfast.com/vernesong/OpenClash package/OpenClash
-git clone https://githubfast.com/openwrt/openwrt/tree/main/package   package/package
-# git clone https://githubfast.com/coolsnowwolf/lede/tree/master/package/lean/wol package/wol
-git clone  https://githubfast.com/openwrt/luci  package/luci
-git clone  https://githubfast.com/openwrt/routing  package/routing
+git clone  https://github.com/jerrykuku/luci-theme-argon  package/luci-theme-argon
+git clone  https://github.com/coolsnowwolf/lede/tree/master/package/lean/adbyby   package/adbyby 
+# git clone https://github.com/vernesong/OpenClash package/OpenClash
+git clone https://github.com/openwrt/openwrt/tree/main/package   package/package
+# git clone https://github.com/coolsnowwolf/lede/tree/master/package/lean/wol package/wol
+git clone  https://github.com/openwrt/luci  package/luci
+git clone  https://github.com/openwrt/routing  package/routing
